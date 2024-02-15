@@ -1,0 +1,49 @@
+package com.crudUsingSpringBootManyToMany.Services;
+
+import java.util.List;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.crudUsingSpringBootManyToMany.Entity.Employee;
+import com.crudUsingSpringBootManyToMany.Entity.Project;
+import com.crudUsingSpringBootManyToMany.Repository.EmployeeRepository;
+import com.crudUsingSpringBootManyToMany.Repository.ProjectReository;
+
+@Service
+public class EmployeeService {
+
+	@Autowired
+	private EmployeeRepository employeeRepository;
+	
+	@Autowired
+	private ProjectReository projectReository;
+	
+	public void saveEmployee(Employee employee) {
+		employeeRepository.save(employee);
+	}
+	
+	public List<Employee> getEmployeeDetails(Long emp_id){
+		if(emp_id != null) {
+			return employeeRepository.findAllByEmp_Id(emp_id);
+		}else {
+			return employeeRepository.findAll();
+		}
+	}
+	
+	public void deleteEmployee(Long emp_id) {
+		employeeRepository.deleteById(emp_id);
+	}
+	
+	public Employee assignProjectToEmployee(Long emp_id,Long projectId) {
+		Set<Project> projectSet=null;
+		Employee employee=employeeRepository.findById(emp_id).get();
+		Project project = projectReository.findById(projectId).get();
+		projectSet=employee.getAssigProjects();
+		projectSet.add(project);
+		employee.setAssigProjects(projectSet);
+		return employeeRepository.save(employee);
+	}
+	
+}

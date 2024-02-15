@@ -1,0 +1,17 @@
+package com.crudUsingSpringBootMapping.Entity;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
+@Entity
+public class Address {
+
+	private Long addressid;
+	private String city;
+	private String addressType;
+	
+	@ManyToOne
+	@JoinColumn(name = "fk_emp_id")
+	private Employee employee;
+}

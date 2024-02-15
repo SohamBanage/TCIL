@@ -1,0 +1,55 @@
+package com.crudUsingSpringBootMapping.Entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+
+@Entity
+public class Address {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "add_id")
+	private Long addressid;
+	private String city;
+	private String addressType;
+	
+	public Address(Long addressid, String city, String addressType) {
+		super();
+		this.addressid = addressid;
+		this.city = city;
+		this.addressType = addressType;
+	}
+
+	public Address() {
+		super();
+	}
+
+	public Long getAddressid() {
+		return addressid;
+	}
+
+	public void setAddressid(Long addressid) {
+		this.addressid = addressid;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getAddressType() {
+		return addressType;
+	}
+
+	public void setAddressType(String addressType) {
+		this.addressType = addressType;
+	}
+	
+}

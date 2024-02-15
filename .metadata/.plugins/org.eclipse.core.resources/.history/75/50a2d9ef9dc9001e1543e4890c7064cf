@@ -1,0 +1,5 @@
+package com.crudUsingSpringBoot.Repository;
+
+public class ProductRepo {
+
+}

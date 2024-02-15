@@ -1,0 +1,29 @@
+package com.crudUsingSpringBootOneToMany.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.crudUsingSpringBootOneToMany.Entity.Product;
+import com.crudUsingSpringBootOneToMany.Service.CustomerProductsService;
+
+@RestController
+@RequestMapping("/customers/{customer_id}/products")
+public class CustomerProductsController {
+
+	@Autowired
+	public CustomerProductsService customerProductsService;
+	
+	public ResponseEntity<Product>addProductToCustomer(@PathVariable int customer_id,@RequestBody Product product){
+		Product addedProduct = customerProductsService.addProductToCustomer(customer_id, product);
+		if(addedProduct!=null) {
+			return new ResponseEntity<>(addedProduct,HttpStatus.CREATED);
+		}else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+}

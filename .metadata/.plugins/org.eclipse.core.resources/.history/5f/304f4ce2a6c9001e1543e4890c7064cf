@@ -1,0 +1,44 @@
+package com.crudUsingSpringBoot.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.crudUsingSpringBoot.Entity.Products;
+import com.crudUsingSpringBoot.Repository.ProductRepo;
+
+@Service
+public class ProductService {
+
+	@Autowired
+	private ProductRepo productRepo;
+	
+	public List<Products> getAllProducts(){
+		return productRepo.findAll();
+	}
+	
+	public Products getProductById(Long id) {
+		Optional<Products>productOptional=productRepo.findById(id);
+		return productOptional.orElse(null);
+	}
+	
+	public Products saveProducts (Products products) {
+		return productRepo.save(products);
+	}
+	
+	public void deleteProduct(Long id) {
+		productRepo.deleteById(id);
+	}
+	
+	public Products UpdateProducts(Products updateProduct,Long id) {
+		Optional<Products> existingProductOptional=productRepo.findById(id);
+		
+		if(existingProductOptional.isPresent()) {
+			Products existingProduct=existingProductOptional.get();
+			existingProduct.setName(UpdateProducts(product, id));
+		}
+	}
+	
+}

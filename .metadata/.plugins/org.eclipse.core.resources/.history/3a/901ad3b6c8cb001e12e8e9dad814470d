@@ -1,0 +1,33 @@
+package com.crudUsingSpringBootManyToMany.Services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.crudUsingSpringBootManyToMany.Entity.Employee;
+import com.crudUsingSpringBootManyToMany.Repository.EmployeeRepository;
+import com.crudUsingSpringBootManyToMany.Repository.ProjectReository;
+
+@Service
+public class EmployeeService {
+
+	@Autowired
+	private EmployeeRepository employeeRepository;
+	
+	@Autowired
+	private ProjectReository projectReository;
+	
+	public void saveEmployee(Employee employee) {
+		employeeRepository.save(employee);
+	}
+	
+	public List<Employee> getEmployeeDetails(Long emp_id){
+		if(emp_id != null) {
+			return employeeRepository.findAllByEmpId(emp_id);
+		}else {
+			return employeeRepository.findAll();
+		}
+	}
+	
+}

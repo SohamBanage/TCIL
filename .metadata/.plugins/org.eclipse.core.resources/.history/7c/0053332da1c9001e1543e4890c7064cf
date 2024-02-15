@@ -1,0 +1,24 @@
+package com.crudUsingSpringBoot.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.crudUsingSpringBoot.Entity.Products;
+import com.crudUsingSpringBoot.Repository.ProductRepo;
+
+@Service
+public class ProductService {
+
+	@Autowired
+	private ProductRepo productRepo;
+	
+	public List<Products> getAllProducts(){
+		return productRepo.findAll();
+	}
+	
+	public Products getProductById(Long id) {
+		return productRepo.getById(id);
+	}
+}

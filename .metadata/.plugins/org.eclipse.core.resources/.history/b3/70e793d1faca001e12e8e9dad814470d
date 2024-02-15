@@ -1,0 +1,24 @@
+package com.crudUsingSpringBootOneToMany.Dto;
+
+import com.crudUsingSpringBootOneToMany.Entity.Customer;
+
+
+public class OrderRequest {
+
+	private Customer customer;
+
+	public OrderRequest(Customer customer) {
+		super();
+		this.customer = customer;
+	}
+
+	public OrderRequest() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "OrderRequest [customer=" + customer + "]";
+	}
+	
+}

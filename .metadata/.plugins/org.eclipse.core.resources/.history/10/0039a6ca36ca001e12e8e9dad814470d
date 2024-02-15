@@ -1,0 +1,60 @@
+package com.crudUsingSpringBoot.Service;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Function;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.FluentQuery.FetchableFluentQuery;
+import org.springframework.stereotype.Service;
+
+import com.crudUsingSpringBoot.Entity.Products;
+import com.crudUsingSpringBoot.Repository.ProductRepo;
+
+@Service
+public class ProductService {
+
+	@Autowired
+	private ProductRepo productRepo;
+	
+	public List<Products> getAllProducts(){
+		return productRepo.findAll();
+	}
+	
+	public Products getProductById(Long id) {
+		Optional<Products>productOptional=productRepo.findById(id);
+		return productOptional.orElse(null);
+	}
+	
+	public Products saveProducts (Products products) {
+		return productRepo.save(products);
+	}
+	
+	public void deleteProduct(Long id) {
+		productRepo.deleteById(id);
+	}
+	
+	public Products updateProducts(Products product,Long id) {
+		Products productDB=productRepo.findById(id).get();
+		
+		if(Objects.nonNull(product.getName())&&!"".equalsIgnoreCase(product.getName())) {
+			productDB.setName(product.getName());
+		}
+		if(Objects.nonNull(product.getPrice())&&product.getPrice()!=0.0) {
+			productDB.setPrice(product.getPrice());
+		}
+		return productRepo.save(productDB);
+	}
+	public List<Products> findProductByName(String name){
+		return productRepo.findByName(name);
+	}
+	
+	public List<Products> findProductByPrice(Long price){
+		return productRepo.findByPrice(price)
+	}
+}

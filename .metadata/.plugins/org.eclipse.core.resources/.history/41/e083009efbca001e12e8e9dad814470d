@@ -1,0 +1,18 @@
+package com.crudUsingSpringBootOneToMany.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.crudUsingSpringBootOneToMany.Repository.CustomerRepository;
+import com.crudUsingSpringBootOneToMany.Repository.ProductRepository;
+
+@Service
+public class OrderService {
+
+	@Autowired
+	public CustomerRepository customerRepository;
+	
+	@Autowired
+	public ProductRepository productRepository;
+	
+}

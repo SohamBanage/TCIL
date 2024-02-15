@@ -1,0 +1,5 @@
+package com.crudUsingSpringBootMapping.Entity;
+
+public class Employee {
+
+}

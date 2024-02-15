@@ -1,0 +1,48 @@
+package com.crudUsingSpringBootManyToMany.Controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.crudUsingSpringBootManyToMany.Entity.Employee;
+import com.crudUsingSpringBootManyToMany.Services.EmployeeService;
+
+@RestController
+@RequestMapping("/employee")
+public class EmployeeController {
+
+	@Autowired
+	private EmployeeService employeeService;
+	
+	@PostMapping("/save")
+	public ResponseEntity<Employee>saveEmployee(@RequestBody Employee employee){
+		employeeService.saveEmployee(employee);
+		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+	
+	@GetMapping(value= {"/getEmployees","/{emp_id}"})
+	public List<Employee> getEmployee(@PathVariable Long emp_id){
+		return employeeService.getEmployeeDetails(emp_id);
+	}
+	
+	@DeleteMapping("delete/{emp_id}")
+	public ResponseEntity removeEmployee(@PathVariable Long emp_id) {
+		employeeService.deleteEmployee(emp_id);
+		return new ResponseEntity(HttpStatus.OK);
+		}
+	
+	@PutMapping("/{emp_id}/project/{projectId}")
+	public Employee assignProjectToEmployee(@PathVariable Long emp_id,@PathVariable Long projectId) {
+		return employeeService.assignProjectToEmployee(emp_id, projectId);
+	}
+}

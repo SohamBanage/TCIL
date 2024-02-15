@@ -1,0 +1,13 @@
+package com.crudUsingSpringBootManyToMany.Entity;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class Employee {
+
+	private int emp_id;
+	
+	private String empName;
+	
+	
+}

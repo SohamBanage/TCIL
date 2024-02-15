@@ -1,0 +1,61 @@
+package com.crudUsingSpringBootManyToMany.Entity;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+
+@Entity
+public class Project {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int projectId;
+	
+	private String projectName;
+	
+	@ManyToMany(mappedBy = "assignedProjects")
+	private Set<Employee>employeeList=new HashSet<>();
+
+	public Project(int projectId, String projectName, Set<Employee> employeeList) {
+		super();
+		this.projectId = projectId;
+		this.projectName = projectName;
+		this.employeeList = employeeList;
+	}
+
+	public Project() {
+		super();
+	}
+
+	public int getProjectId() {
+		return projectId;
+	}
+
+	public void setProjectId(int projectId) {
+		this.projectId = projectId;
+	}
+
+	public String getProjectName() {
+		return projectName;
+	}
+
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+
+	public Set<Employee> getEmployeeList() {
+		return employeeList;
+	}
+
+	public void setEmployeeList(Set<Employee> employeeList) {
+		this.employeeList = employeeList;
+	} 
+	
+	
+}

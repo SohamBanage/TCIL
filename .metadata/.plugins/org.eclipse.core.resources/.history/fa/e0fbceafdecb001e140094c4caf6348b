@@ -1,0 +1,39 @@
+package com.crudUsingSpringBootManyToMany.Entity;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+
+@Entity
+public class Employee {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long emp_id;
+	
+	private String empName;
+	
+	@ManyToMany
+	@JoinTable(name = "employee_project",joinColumns = @JoinColumn(name="employee_id"),inverseJoinColumns = @JoinColumn(name="project_id"))
+	private List<Project> assigProjects=new ArrayList<>();
+
+	public Employee(Long emp_id, String empName, List<Project> assigProjects) {
+		super();
+		this.emp_id = emp_id;
+		this.empName = empName;
+		this.assigProjects = assigProjects;
+	}
+
+	public Employee() {
+		super();
+	}
+}

@@ -1,0 +1,9 @@
+package com.crudUsingSpringBootManyToMany.Repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.crudUsingSpringBootManyToMany.Entity.Project;
+
+public interface ProjectReository extends JpaRepository<Project, Integer>{
+
+}

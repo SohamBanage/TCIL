@@ -1,0 +1,5 @@
+ackage com.crudUsingSpringBootMapping.Repository;
+
+public class AddressRepository {
+
+}

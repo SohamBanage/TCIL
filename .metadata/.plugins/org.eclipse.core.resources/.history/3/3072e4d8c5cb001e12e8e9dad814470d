@@ -1,0 +1,21 @@
+package com.crudUsingSpringBootManyToMany.Entity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+
+@Entity
+public class Employee {
+
+	private int emp_id;
+	
+	private String empName;
+	
+	@ManyToMany
+	@JoinTable(name = "employee_project",joinColumns = @JoinColumn(name="employee_id"),inverseJoinColumns = @JoinColumn(name="project_id"))
+	private Set<Project> assigProjects=new HashSet<>();
+}

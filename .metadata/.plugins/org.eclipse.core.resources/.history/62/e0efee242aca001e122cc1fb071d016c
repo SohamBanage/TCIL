@@ -1,0 +1,10 @@
+package com.crudUsingSpringBoot.Repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.crudUsingSpringBoot.Entity.Products;
+
+public interface ProductRepo extends JpaRepository<Products, Long>{
+
+	Products updateProduct(Products product, Long id);
+}

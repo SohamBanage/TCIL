@@ -1,0 +1,5 @@
+package com.crudUsingSpringBootOneToMany.Entity;
+
+public class Product {
+
+}

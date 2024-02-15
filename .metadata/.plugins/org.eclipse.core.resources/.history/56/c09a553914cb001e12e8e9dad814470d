@@ -1,0 +1,5 @@
+package com.crudUsingSpringBootMapping.Repository;
+
+public class EmployeeRepository extends {
+
+}
